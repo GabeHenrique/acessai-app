@@ -1,0 +1,22 @@
+{
+  "appId": "com.acessai.app",
+  "appName": "Acessai App",
+  "webDir": "www",
+  "server": {
+    "allowNavigation": [
+      "https://acessai.vercel.app"
+    ]
+  },
+  "plugins": {
+    "Geolocation": {
+      "permissions": ["location"]
+    },
+    "App": {
+      "preventBackButton": true
+    }
+  },
+  "android": {
+    "allowMixedContent": true,
+    "webContentsDebuggingEnabled": true
+  }
+}

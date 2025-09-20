@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Acessai App</title>
+    <style>
+        :root {
+            --safe-area-inset-bottom: env(safe-area-inset-bottom, 20px);
+            --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            /* Add padding for Android gesture navigation */
+            padding-bottom: var(--safe-area-inset-bottom);
+            background-color: #ffffff;
+        }
+        
+        #webview-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* Ensure proper handling of safe areas */
+            height: calc(100vh - var(--safe-area-inset-bottom));
+        }
+        
+        #webview-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background-color: #ffffff;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #666;
+            z-index: 1;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        /* Additional styles for better Android handling */
+        @media (orientation: portrait) {
+            :root {
+                --safe-area-inset-bottom: env(safe-area-inset-bottom, 24px);
+            }
+        }
+        
+        @media (orientation: landscape) {
+            :root {
+                --safe-area-inset-bottom: env(safe-area-inset-bottom, 16px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="webview-container">
+        <div class="loading" id="loading">Carregando...</div>
+        <iframe id="webview-frame" src="https://acessai.vercel.app/" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation allow-top-navigation"></iframe>
+    </div>
+    
+    <!-- Capacitor scripts -->
+    <script type="module" src="capacitor.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
