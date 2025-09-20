@@ -69,9 +69,7 @@ class AcessaiApp {
 
         // Handle iframe navigation
         iframe.onbeforeunload = () => {
-            console.log('Webview is navigating...');
             loading.style.display = 'block';
-            loading.innerHTML = 'Carregando...';
             loading.style.color = '#666';
         };
     }
@@ -83,7 +81,7 @@ class AcessaiApp {
         // Set default safe area values for Android gesture navigation
         if (Capacitor.getPlatform() === 'android') {
             root.style.setProperty('--safe-area-inset-bottom', '20px');
-            root.style.setProperty('--safe-area-inset-top', '0px');
+            root.style.setProperty('--safe-area-inset-top', '20px');
             
             // Apply safe area handling to body
             document.body.style.paddingBottom = 'var(--safe-area-inset-bottom)';
