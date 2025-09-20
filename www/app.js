@@ -39,11 +39,22 @@ class AcessaiApp {
 
     setupBackButtonHandler() {
         console.log('Setting up back button handler...');
-        // Prevent app from closing on back button
+        // Prevent app from closing on back button and implement navigation back
         App.addListener('backButton', ({ canGoBack }) => {
-            console.log('Back button pressed, preventing app closure. canGoBack:', canGoBack);
-            // Don't call App.exitApp() to prevent closing
-            // You could add navigation logic here if needed
+            console.log('Back button pressed, canGoBack:', canGoBack);
+            
+            // Check if the Capacitor webview can go back
+            if (canGoBack) {
+                // Use Capacitor's built-in navigation
+                window.history.back();
+                console.log('Used Capacitor webview history.back()');
+            } else {
+                // If no history available, just stay on current page
+                console.log('No navigation history available, staying on current page');
+                // We could optionally show a toast or message here
+            }
+            
+            // Never call App.exitApp() to prevent the app from closing
         });
     }
 
